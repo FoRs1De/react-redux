@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './BookForm.css';
 import { useDispatch } from 'react-redux';
 import { addBook } from '../redux/books/actionCreators';
+import { v4 as uuid } from 'uuid';
 
 const BookForm = () => {
   const [title, setTitle] = useState('');
@@ -11,10 +12,11 @@ const BookForm = () => {
     e.preventDefault();
     if (title && author) {
       const book = {
+        id: uuid(),
         title: title,
         author: author,
       };
-      console.log(addBook(book));
+
       dispatch(addBook(book));
       setTitle('');
       setAuthor('');
